@@ -69,7 +69,7 @@ public class StandardHipChatService implements HipChatService {
     }
 
     private String shouldNotify(String color) {
-        return color.equalsIgnoreCase("green") ? "0" : "1";
+        return "1";//color.equalsIgnoreCase("green") ? "0" : "1";
     }
 
     void setHost(String host) {
