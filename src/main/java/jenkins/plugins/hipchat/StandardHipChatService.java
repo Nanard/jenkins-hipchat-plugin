@@ -1,14 +1,12 @@
 package jenkins.plugins.hipchat;
 
+import hudson.ProxyConfiguration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jenkins.model.Jenkins;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import jenkins.model.Jenkins;
-import hudson.ProxyConfiguration;
 
 public class StandardHipChatService implements HipChatService {
 
@@ -18,12 +16,14 @@ public class StandardHipChatService implements HipChatService {
     private String token;
     private String[] roomIds;
     private String from;
+    private boolean forceUserNotification;
 
-    public StandardHipChatService(String token, String roomId, String from) {
+    public StandardHipChatService(String token, String roomId, String from, boolean forceUserNotification) {
         super();
         this.token = token;
         this.roomIds = roomId.split(",");
         this.from = from;
+        this.forceUserNotification = forceUserNotification;
     }
 
     public void publish(String message) {
@@ -69,7 +69,7 @@ public class StandardHipChatService implements HipChatService {
     }
 
     private String shouldNotify(String color) {
-        return "1";//color.equalsIgnoreCase("green") ? "0" : "1";
+        return forceUserNotification?"1":color.equalsIgnoreCase("green") ? "0" : "1"; 
     }
 
     void setHost(String host) {

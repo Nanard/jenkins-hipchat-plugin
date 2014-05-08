@@ -1,7 +1,5 @@
 package jenkins.plugins.hipchat;
 
-import jenkins.plugins.hipchat.StandardHipChatService;
-import org.junit.Before;
 import org.junit.Test;
 
 public class StandardHipChatServiceTest {
@@ -11,7 +9,7 @@ public class StandardHipChatServiceTest {
      */
     @Test
     public void publishWithBadHostShouldNotRethrowExceptions() {
-        StandardHipChatService service = new StandardHipChatService("token", "room", "from");
+        StandardHipChatService service = new StandardHipChatService("token", "room", "from", true);
         service.setHost("hostvaluethatwillcausepublishtofail");
         service.publish("message");
     }

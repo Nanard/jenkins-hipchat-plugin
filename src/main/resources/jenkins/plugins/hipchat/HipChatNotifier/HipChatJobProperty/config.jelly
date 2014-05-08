@@ -32,6 +32,10 @@
         <f:entry title="Notify Back To Normal">
             <f:checkbox name="hipChatNotifyBackToNormal" value="true" checked="${instance.getNotifyBackToNormal()}"/>
         </f:entry>
+        
+        <f:entry title="Force hipchat user notification">
+            <f:checkbox name="hipChatForceUserNotification" value="true" checked="${instance.getForceUserNotification()}"/>
+        </f:entry>
 
     </f:section>
 
